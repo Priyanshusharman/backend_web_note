@@ -1,6 +1,8 @@
 const coonectToMongoose=require('./db')
 const express = require('express')
 
+const remote="https://web-note-backend.onrender.com";
+
 // const modelcus=require('./modules/Try')
 coonectToMongoose(); 
 // modelcus();
@@ -10,7 +12,7 @@ const port = 7000
 app.use(express.json());
 //to solve access problem
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', remote);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, auth-token');
   next();

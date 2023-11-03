@@ -16,6 +16,7 @@ router.post("/signup", [
 ], async (req, res) => {
     const errors = validationResult(req);
     let success=false;
+    try{
     if (!errors.isEmpty()) {
         return res.status(400).json({ success:success,errors: errors.array() })
     }
@@ -38,6 +39,10 @@ router.post("/signup", [
     const token = jwt.sign(data, jwt_secure_key);
     success=true;
     res.json({success:success, token: token })
+}
+catch(error){
+    return res.status(404).json({success:success, error:"error"});
+}
 })
 // route=2login http://localhost:7000/api/auth/login
 router.post('/login', [
